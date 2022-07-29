@@ -28,29 +28,31 @@ exports.addForm = async (req, res) => {
         if (data.carnet.length > 6) return res.status(400).send({ message: 'Only accept 6 characters' });
         if (data.carnet[0] != 'A') return res.status(400).send({ message: 'First character should only be \'A\'' });
         if (data.carnet[2] != '5') return res.status(400).send({ message: 'Third character should only be \'5\'' })
-        if (data.carnet[5] != ('1' || '3' || '9')) return res.status(400).send({ message: 'Carnet can only end in 1, 3 or 9 ' });
-        data.carnet = data.carnet.toString()
-        data.carnet = data.carnet.replace(/,/g, "");
+        if (data.carnet[5] == '1' || data.carnet[5] == '3' || data.carnet[5] == '9') {
+            data.carnet = data.carnet.toString()
+            data.carnet = data.carnet.replace(/,/g, "");
 
 
-        //validaciones de género
-        if (data.gender == 'femenino' || data.gender == 'masculino') {
-            //validaciones de edad
-            const age = validateAge(data.inscription, data.birthDate);
-            if (age == false) return res.status(401).send({ message: 'Only accept people over 17 years old' });
+            //validaciones de género
+            if (data.gender == 'femenino' || data.gender == 'masculino') {
+                //validaciones de edad
+                const age = validateAge(data.inscription, data.birthDate);
+                if (age == false) return res.status(401).send({ message: 'Only accept people over 17 years old' });
 
-            //validaciones de genero de poesía
-            if (data.themeGender == 'lírica' || data.themeGender == 'épica' || data.themeGender == 'dramática') {
-                //fecha de exposición
-                //const eDates = eDate(data.carnet, data.themeGender, data.inscription)
-                //console.log(eDates)
+                //validaciones de genero de poesía
+                if (data.themeGender == 'lírica' || data.themeGender == 'épica' || data.themeGender == 'dramática') {
+                    //fecha de exposición
+                    //const eDates = eDate(data.carnet, data.themeGender, data.inscription)
+                    //console.log(eDates)
 
-                const userData = new Form(data);
-                await userData.save();
-                return res.send({ message: 'Your form has been sended', data })
-            } else return res.status(400).send({ message: 'Invalid theme' })
+                    const userData = new Form(data);
+                    await userData.save();
+                    return res.send({ message: 'Your form has been sended', data })
+                } else return res.status(400).send({ message: 'Invalid theme' })
 
-        } else return res.status(400).send({ message: 'Invalid params' })
+            } else return res.status(400).send({ message: 'Invalid params' })
+        } else return res.status(400).send({ message: 'Carnet can only end in 1, 3 or 9 ' });
+
 
 
 
