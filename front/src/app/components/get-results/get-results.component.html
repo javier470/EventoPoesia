@@ -1,4 +1,4 @@
-<div class="text-center " style="margin: 15%; margin-top: 5%; margin-bottom: 5%;">
+<div class="text-center " style="margin: 5%; margin-top: 5%; margin-bottom: 5%;">
     <div class="card text-center m-5">
         <div class="card-header">
             <h2>Resultados</h2>
@@ -10,9 +10,13 @@
                         <th scope="col">No.</th>
                         <th scope="col">Carnet</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Dirección</th>
                         <th scope="col">Género</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Fecha de Nacimiento</th>
                         <th scope="col">Carrera</th>
                         <th scope="col">Género de poesía</th>
+                        <th scope="col">Fecha de inscripción</th>
                         <th scope="col">Fecha para declamar</th>
                     </tr>
                 </thead>
@@ -21,9 +25,13 @@
                         <th scope="row">{{i+1}}</th>
                         <td>{{r.carnet}}</td>
                         <td>{{r.name}}</td>
+                        <td>{{r.address}}</td>
                         <td>{{r.gender}}</td>
+                        <td>{{r.phone}}</td>
+                        <td>{{r.birthDate | date: 'shortDate'}}</td>
                         <td>{{r.subject}}</td>
                         <td>{{r.themeGender}}</td>
+                        <td>{{r.inscription | date: 'shortDate'}}</td>
                         <td>{{r.exhibitioDate | date: 'shortDate'}}</td>
                     </tr>
                 </tbody>
