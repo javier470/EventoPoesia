@@ -9,16 +9,20 @@ import Swal from 'sweetalert2';
   styleUrls: ['./send-form.component.css']
 })
 export class SendFormComponent implements OnInit {
-
-  ngOnInit(): void {
-  }
-
   formModule: FormModel
+  gender: any
+  themeGender: any
 
   constructor(
     private formRest: FormRestService
   ) {
-    this.formModule = new FormModel('', '', '', '', '', '', new Date(''), '', '', new Date(''), new Date(''))
+    this.formModule = new FormModel('', '', '', '', '', '', new Date(''), '', '', new Date(''), new Date(''));
+    this.gender = [{ type: 'femenino' }, { type: 'masculino' }];
+    this.themeGender = [{ theme: 'lírica' }, { theme: 'épica' }, { theme: 'dramática' }];
+  }
+
+
+  ngOnInit(): void {
   }
 
   sendForm(form: any) {
