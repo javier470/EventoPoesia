@@ -42,11 +42,11 @@ exports.addForm = async (req, res) => {
             //validaciones de genero de poesía
             if (data.themeGender == 'lírica' || data.themeGender == 'épica' || data.themeGender == 'dramática') {
                 //fecha de exposición
-                const eDates = eDate(data.carnet, data.themeGender, data.inscription)
-                console.log(eDates)
+                //const eDates = eDate(data.carnet, data.themeGender, data.inscription)
+                //console.log(eDates)
 
-                //const userData = new Form(data);
-                //await userData.save();
+                const userData = new Form(data);
+                await userData.save();
                 return res.send({ message: 'Your form has been sended', data })
             } else return res.status(400).send({ message: 'Invalid theme' })
 
@@ -60,3 +60,14 @@ exports.addForm = async (req, res) => {
     }
 }
 
+
+exports.getForms = async (req, res) => {
+    try {
+        const forms = await Form.find({}).lean({});
+        if (!forms) return res.status(404).send({ message: 'Forms not found' })
+        return res.send({ message: 'Forms found:', forms })
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send(err);
+    }
+}

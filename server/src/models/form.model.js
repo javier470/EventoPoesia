@@ -11,7 +11,7 @@ const formSchema = mongoose.Schema({
     birthDate: Date,
     subject: String,
     themeGender: String,
-    inscription: String,
+    inscription: Date,
     exhibitioDate : Date
 })
 
