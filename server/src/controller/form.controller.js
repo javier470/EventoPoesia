@@ -44,8 +44,8 @@ exports.addForm = async (req, res) => {
                     //fecha de exposición
                     const eDates = eDate(data.carnet, data.themeGender, data.inscription)
                     data.exhibitioDate = new Date(eDates)
-                    
-                    //console.log(data.exhibitioDate)
+
+                    console.log(data.exhibitioDate)
                     //const userData = new Form(data);
                     //await userData.save();
                     return res.send({ message: 'Tú formulario ha sido enviado', data })

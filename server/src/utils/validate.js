@@ -36,9 +36,12 @@ exports.eDate = (carnet, theme, date) => {
             days = 5
             const final = this.isWeekend(date, parseInt(days));
             return final
+        } else if (c[5] == '3' && theme == 'épica') {
+            const final = this.isLastWeek(lastDay)
+            return final
         }
 
-        return week
+        return 'date'
     } catch (err) {
         console.log(err);
         return err
@@ -52,8 +55,22 @@ exports.isWeekend = (date, num) => {
         if ((weekend >= 6) || (weekend == 0)) {
             date.setDate(date.getDate() + 2)
         }
+        return date
+    } catch (err) {
+        console.log(err);
+        return err
+    }
+}
 
-
+exports.isLastWeek = (date) => {
+    try {
+        let weekend = date.getDay()
+        date.setDate(date.getDate())
+        if ((weekend == 6)) {
+            date.setDate(date.getDate() - 1)
+        } else if ((weekend == 0)) {
+            date.setDate(date.getDate() - 2)
+        }
         return date
     } catch (err) {
         console.log(err);
