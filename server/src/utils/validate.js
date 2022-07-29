@@ -27,3 +27,18 @@ exports.validateAge = (today, birth) => {
     }
 }
 
+exports.eDate = (carnet, theme, date) => {
+    try {
+        let time = date.getDate();
+        let weekend = date.getTime();
+        let c = carnet.split("");
+        if (c[5] == '1' && theme == 'dramática') {
+            time = time + 5
+            if (time > 30) time = 0
+        }
+        return time
+    } catch (err) {
+        console.log(err);
+        return err
+    }
+}

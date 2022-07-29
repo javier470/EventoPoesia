@@ -1,7 +1,7 @@
 'use strict'
 
 const Form = require('../models/form.model');
-const { validateData, validateAge } = require("../utils/validate");
+const { validateData, validateAge, eDate } = require("../utils/validate");
 
 exports.addForm = async (req, res) => {
     try {
@@ -41,9 +41,12 @@ exports.addForm = async (req, res) => {
 
             //validaciones de genero de poesía
             if (data.themeGender == 'lírica' || data.themeGender == 'épica' || data.themeGender == 'dramática') {
+                //fecha de exposición
+                const eDates = eDate(data.carnet, data.themeGender, data.inscription)
+                console.log(eDates)
 
-                const userData = new Form(data);
-                await userData.save();
+                //const userData = new Form(data);
+                //await userData.save();
                 return res.send({ message: 'Your form has been sended', data })
             } else return res.status(400).send({ message: 'Invalid theme' })
 
