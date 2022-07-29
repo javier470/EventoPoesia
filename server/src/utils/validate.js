@@ -4,7 +4,7 @@ exports.validateData = (data) => {
     let keys = Object.keys(data), msg = '';
     for (let key of keys) {
         if (data[key] !== null && data[key] !== undefined && data[key] !== '') continue;
-        msg += `Param (${key}) is required\n`;
+        msg += `El parámetro ${key} es necesario.\n`;
     }
     return msg.trim();
 }
@@ -29,14 +29,32 @@ exports.validateAge = (today, birth) => {
 
 exports.eDate = (carnet, theme, date) => {
     try {
-        let time = date.getDate();
-        let weekDay = date.getDay();
-        let less = 0
+        let days = 0
+        let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
         let c = carnet.split("");
         if (c[5] == '1' && theme == 'dramática') {
-            
+            days = 5
+            const final = this.isWeekend(date, parseInt(days));
+            return final
         }
-        return time
+
+        return week
+    } catch (err) {
+        console.log(err);
+        return err
+    }
+}
+
+exports.isWeekend = (date, num) => {
+    try {
+        let weekend = date.getDay() + num
+        date.setDate(date.getDate() + num)
+        if ((weekend >= 6) || (weekend == 0)) {
+            date.setDate(date.getDate() + 2)
+        }
+
+
+        return date
     } catch (err) {
         console.log(err);
         return err
