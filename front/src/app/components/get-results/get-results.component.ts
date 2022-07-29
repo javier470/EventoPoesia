@@ -20,7 +20,10 @@ export class GetResultsComponent implements OnInit {
 
   getResults() {
     this.formRest.getResults().subscribe({
-      next: (res: any) => this.results = res.forms,
+      next: (res: any) => {
+        this.results = res.forms
+        
+      },
       error: (err) => {
         Swal.fire({
           icon: 'error',

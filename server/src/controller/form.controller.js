@@ -45,9 +45,9 @@ exports.addForm = async (req, res) => {
                     const eDates = eDate(data.carnet, data.themeGender, data.inscription)
                     data.exhibitioDate = new Date(eDates)
 
-                    console.log(data.exhibitioDate)
-                    //const userData = new Form(data);
-                    //await userData.save();
+
+                    const userData = new Form(data);
+                    await userData.save();
                     return res.send({ message: 'Tú formulario ha sido enviado', data })
                 } else return res.status(400).send({ message: 'Tema inválido' })
 
