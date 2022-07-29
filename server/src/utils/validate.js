@@ -30,11 +30,11 @@ exports.validateAge = (today, birth) => {
 exports.eDate = (carnet, theme, date) => {
     try {
         let time = date.getDate();
-        let weekend = date.getTime();
+        let weekDay = date.getDay();
+        let less = 0
         let c = carnet.split("");
         if (c[5] == '1' && theme == 'dramática') {
-            time = time + 5
-            if (time > 30) time = 0
+            
         }
         return time
     } catch (err) {
